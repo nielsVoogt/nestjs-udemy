@@ -31,4 +31,16 @@ export class TasksService {
 
     return task;
   }
+
+  updateTaskStatus(id: string, status: TaskStatus): Task | Error {
+    const task = this.getTaskById(id);
+
+    if (!task) {
+      throw new Error(`Task with ID "${id}" not found`);
+    }
+
+    task.status = status;
+
+    return task;
+  }
 }
