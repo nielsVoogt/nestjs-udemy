@@ -4,7 +4,7 @@ import { CreateTaskDto } from './dto/create-task.dto';
 import { v4 as uuidv4 } from 'uuid';
 @Injectable()
 export class TasksService {
-  private readonly tasks: Task[] = [];
+  private tasks: Task[] = [];
 
   getAllTasks(): Task[] {
     return this.tasks;
@@ -12,6 +12,10 @@ export class TasksService {
 
   getTaskById(id: string): Task | undefined {
     return this.tasks.find((task) => task.id === id);
+  }
+
+  deleteTask(id: string): void {
+    this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 
   createTask(createTaskDto: CreateTaskDto): Task {
